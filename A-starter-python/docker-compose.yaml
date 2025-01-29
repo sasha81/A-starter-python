@@ -1,0 +1,48 @@
+services:
+  rabbit-mq:
+    image: rabbitmq:3-management
+    hostname: rabbitmq-host
+    environment:
+#      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_USER=sasha
+      - RABBITMQ_DEFAULT_PASS=sasha
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+    networks:
+      - rabbitnetwork
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+#    ports:
+#      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - rabbitnetwork
+
+  python-app:
+    build: .
+    ports:
+      - 50001:50001
+    depends_on:
+      - rabbit-mq
+      - db
+    networks:
+      - rabbitnetwork
+
+
+volumes:
+  db:
+    driver: local
+  rabbitmq:
+    driver: local
+
+networks:
+  rabbitnetwork:
+    driver: bridge

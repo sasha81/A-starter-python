@@ -1,0 +1,7 @@
+rabbitmq:
+  hostname: localhost
+  username: guest
+  password: guest
+  exchange: aux_exchange
+  routing_key: python-routingkey
+  queue: python-queue

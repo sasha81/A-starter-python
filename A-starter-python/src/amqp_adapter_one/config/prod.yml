@@ -1,0 +1,8 @@
+rabbitmq:
+  hostname: rabbitmq-host
+  username: sasha
+  password: sasha
+  exchange: aux_exchange
+  routing_key: python-routingkey
+  queue: python-queue
+  prefetch_count: 1

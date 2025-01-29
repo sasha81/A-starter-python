@@ -1,0 +1,9 @@
+mongodb:
+  host: localhost
+  port: 27017
+  username: guest
+  password: guest
+
+filesystem:
+  export: export
+  import: import

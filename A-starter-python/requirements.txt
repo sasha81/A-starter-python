@@ -1,0 +1,11 @@
+flask~=3.0.0
+SQLAlchemy
+grpcio-tools
+grpcio
+protobuf
+py_eureka_client
+amqpstorm
+argparse
+pymongo
+pyyaml
+grpc-interceptor

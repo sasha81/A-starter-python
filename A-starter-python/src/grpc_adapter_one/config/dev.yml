@@ -1,0 +1,9 @@
+grpc:
+  port: 50000
+  host: 0.0.0.0
+  max_workers: 10
+
+eureka:
+  url:  http://localhost:8761/eureka
+  grpc_app_name: python_grpc_service_1
+  grpc_deployment_port: 50001

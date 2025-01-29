@@ -1,0 +1,9 @@
+mongodb:
+  host: mongodb-host
+  port: 27017
+  username: root
+  password: password
+
+files:
+  export: export
+  import: import
