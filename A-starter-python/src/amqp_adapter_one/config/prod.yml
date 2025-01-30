@@ -1,5 +1,6 @@
 rabbitmq:
-  hostname: rabbitmq-host
+  hostname: rabbit-mq
+  port: 5672
   username: sasha
   password: sasha
   exchange: aux_exchange
