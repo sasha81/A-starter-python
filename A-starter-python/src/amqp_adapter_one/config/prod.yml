@@ -6,4 +6,4 @@ rabbitmq:
   exchange: aux_exchange
   routing_key: python-routingkey
   queue: python-queue
-  prefetch_count: 1
+  #prefetch_count: 1
