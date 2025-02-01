@@ -26,7 +26,7 @@ eureka_report_port = int(config["eureka.grpc_deployment_port"])
 
 try:
     eureka_client.init(eureka_server=config["eureka.url"], app_name=config["eureka.grpc_app_name"],
-                       instance_host=config["grpc.host"], instance_port=eureka_report_port)
+                       instance_host=config["eureka.grpc_host"], instance_port=eureka_report_port)
 except Exception as e:
     print("gRPC adapter can't connect to Eureka: ", e)
 

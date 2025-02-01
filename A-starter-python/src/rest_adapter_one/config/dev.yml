@@ -6,3 +6,4 @@ eureka:
   url:  http://localhost:8761/eureka
   rest_app_name: python_rest_service_1
   rest_deployment_port: 3000
+  rest_host: localhost

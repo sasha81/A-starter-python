@@ -22,11 +22,9 @@ config = getConfig(THIS_MODULE_PATH, args, DEFAULT_MODE, trim=False)
 host = config["rest.host"]
 deployment_port = int(config["rest.port"])
 eureka_report_port = int(config["eureka.rest_deployment_port"])
-# print("config[eureka.url]1: ", config["eureka.url"])
-# print("config[eureka.rest_deployment_port]1: ",eureka_report_port )
 
 try:
-    eureka_client.init(eureka_server=config["eureka.url"], app_name=config["eureka.rest_app_name"], instance_host=host, instance_port=eureka_report_port)
+    eureka_client.init(eureka_server=config["eureka.url"], app_name=config["eureka.rest_app_name"], instance_host=config["eureka.rest_host"], instance_port=eureka_report_port)
 except:
     print("Rest adapter can't connect to Eureka: ")
 
