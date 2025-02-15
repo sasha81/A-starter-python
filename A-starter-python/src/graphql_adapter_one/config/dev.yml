@@ -1,0 +1,9 @@
+graphql:
+  port: 5000
+  host: localhost
+
+eureka:
+  url:  http://localhost:8761/eureka
+  graphql_app_name: python_graphql_service_1
+  graphql_deployment_port: 5000
+  graphql_host: localhost

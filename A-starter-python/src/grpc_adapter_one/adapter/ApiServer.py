@@ -5,27 +5,31 @@ from src.grpc_adapter_one.api_pb2_grpc import ApiServicer
 
 class ApiServer(ApiServicer):
     def getAll(self, request, context):
+        return get_all(request, context, DataLogic)
 
-        responseObj = apis.Items()
-        users = DataLogic.getAll("users")
 
-        items = getItemsFromUsers(users)
-        responseObj.items.extend(items)
+    def getStream(self, request_iterator, context):
+        return get_stream(request_iterator, context, DataLogic)
 
-        return responseObj
-
-    def getStream(self, request, context):
-        for i in range(1, request.length + 1):
-            yield apis.Item(id=i, name=f'name {i}')
 
     def sayHello(self, request, context):
         return apis.Hello(message=f'Hello {request.name}!')
 
+
 def getItemsFromUsers(users):
     user_list = []
-    count = 0
     for user in users:
-        user['_id'] = count
-        user_list.append(apis.Item(id=user['_id'], name = user['name']))
-        count = count + 1
+        user_list.append(apis.User(id=str(user['id']), name=user['name'], age=user['age']))
     return user_list
+
+def get_all(request, context, dataLogic):
+    responseObj = apis.Users()
+    users = dataLogic.getAllUsers(int(request.length))
+    users = getItemsFromUsers(users)
+    responseObj.users.extend(users)
+    return responseObj
+
+def get_stream(request_iterator, context, dataLogic):
+    for req in request_iterator:
+        userId = dataLogic.create({"name": req.name, "age": req.age})
+        yield apis.User(id=userId, name=req.name, age=req.age)

@@ -3,38 +3,27 @@ import logging
 from amqpstorm import Message, AMQPInvalidArgument, AMQPError
 import traceback as tb
 from src.common.exceptions.CoreBaseException import CoreBaseException
-
-from src.core_one.logic import logic
+from src.core_one.exceptions.CoreErrorCodes import CoreErrorCodes
+from src.core_one.logic.logic import DataLogic
 import json
 def on_request(message):
+    process_request(message, DataLogic, Message)
+
+def process_request(message, dataLogic, amqp_message):
     properties = {
         'correlation_id': message.correlation_id
     }
 
     try:
         print(" [.] message.body(%s)" % (message.body,))
-
-        response = logic.DataLogic().getAllUsers()
-        #response = str({'name':'Python'})
-
-
-
-        response = Message.create(message.channel, json.dumps(response), properties)
+        limit = json.loads(message.body)['length']
+        response = dataLogic.getAllUsers(limit)
+        response = amqp_message.create(message.channel, json.dumps(response), properties)
         response.publish(message.reply_to)
-
         message.ack()
     except CoreBaseException as e:
         logging.error(''.join(tb.format_exception(None, e, e.__traceback__)))
-        #print(e.__str__())
-        # if e.code == CoreErrorCodes.incompatibleInputConditions.value:
-        #     #raise AMQPError(reply_code=406)
-        #
-        #
-        # else:
-        #     #raise AMQPError(reply_code=541)
-
-
-        response = Message.create(message.channel,"{err:"+ e.__str__()+"}", properties)
+        response = amqp_message.create(message.channel, "{\"err\":" + e.__str__() + "}", properties)
         response.publish(message.reply_to)
 
         message.ack()

@@ -5,7 +5,7 @@ class TestCalculator(unittest.TestCase):
   #setUp method is overridden from the parent class TestCase
   def setUp(self):
     self.calculator = Calculator()
-  #Each test method starts with the keyword test_
+  #Each tests method starts with the keyword test_
   def test_add(self):
     self.assertEqual(self.calculator.add(4,7), 11)
   def test_subtract(self):
@@ -16,6 +16,6 @@ class TestCalculator(unittest.TestCase):
     self.assertEqual(self.calculator.divide(10,2), 5)
 
 
-# Executing the tests in the above test case class
+# Executing the tests in the above tests case class
 if __name__ == "__main__":
   unittest.main()

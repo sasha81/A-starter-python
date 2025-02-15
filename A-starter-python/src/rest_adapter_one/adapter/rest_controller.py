@@ -1,8 +1,18 @@
-
-from src.core_one.logic import logic
+from flask import request, jsonify, make_response
+from src.core_one.logic.logic import DataLogic
 
 def setController(app):
-    @app.route("/optimizer/getAll")
-    def hello_world():
-        result =  logic.DataLogic.getAllUsers()
-        return result
+    @app.route("/users/getAll")
+    def get_all_users():
+        return process_get_all_users(request, DataLogic)
+        # limit = int(request.args.get('limit'))
+        # result = DataLogic.getAllUsers(limit)
+        # return result
+
+
+
+
+def process_get_all_users(request, dataLogic):
+    limit = int(request.args.get('limit'))
+    result = dataLogic.getAllUsers(limit)
+    return result

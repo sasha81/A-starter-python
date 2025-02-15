@@ -32,4 +32,4 @@ class CustomExceptionToStatusInterceptor(ServerInterceptor):
                 context.set_code(Unknown.status_code)
 
             context.set_details(e.__str__())
-            #raise GrpcException(e.__str__(), FailedPrecondition.status_code)
+

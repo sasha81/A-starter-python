@@ -33,11 +33,6 @@ class MongoManager(IMongoManager):
             result = MongoManager.__instance
         return result
 
-    # @staticmethod
-    # def init_db(db: str):
-    #     MongoManager.__db = MongoManager.__instance[db]
-    #     return MongoManager.__db
-
     @staticmethod
     def get_db():
         return MongoManager.__db

@@ -1,11 +1,15 @@
 flask~=3.0.0
 SQLAlchemy
-grpcio-tools
+grpcio-tools==1.64.1
 grpcio
-protobuf
+protobuf==3.20.*
 py_eureka_client
 amqpstorm
 argparse
 pymongo
 pyyaml
 grpc-interceptor
+asyncio
+fastapi[uvicorn]
+ariadne
+uvicorn
