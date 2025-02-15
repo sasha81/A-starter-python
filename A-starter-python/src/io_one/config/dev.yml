@@ -4,7 +4,8 @@ mongodb:
   username: root
   password: password
   db_name: testdb
-
+queries:
+  max: 3
 files:
   export: export
   import: import

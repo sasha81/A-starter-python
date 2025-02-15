@@ -3,21 +3,27 @@ package api;
 
 service Api {
   rpc sayHello (HelloRequest) returns (Hello) {}
-  rpc getAll (ApiRequest) returns (api.Items) {}
-  rpc getStream (ApiRequest) returns (stream api.Item) {}
+  rpc getAll (ApiRequest) returns (api.Users) {}
+  rpc getStream (stream UserDto) returns (stream api.User) {}
 }
 
 message ApiRequest {
   int32 length = 1;
 }
 
-message Items {
-  repeated api.Item items = 1;
+message UserDto {
+  string name = 1;
+  int32 age = 2;
 }
 
-message Item {
-  int32 id = 1;
+message Users {
+  repeated api.User users = 1;
+}
+
+message User {
+  string id = 1;
   string name = 2;
+  int32 age = 3;
 }
 
 message HelloRequest {
