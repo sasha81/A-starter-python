@@ -5,11 +5,6 @@ def setController(app):
     @app.route("/users/getAll")
     def get_all_users():
         return process_get_all_users(request, DataLogic)
-        # limit = int(request.args.get('limit'))
-        # result = DataLogic.getAllUsers(limit)
-        # return result
-
-
 
 
 def process_get_all_users(request, dataLogic):
