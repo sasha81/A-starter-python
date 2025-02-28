@@ -1,10 +1,10 @@
 graphql:
-  port: 3011
+  port: 3111
   host: 0.0.0.0
 
 
 eureka:
   url:  http://localhost:8761/eureka
-  graphql_app_name: python_rest_service_1
-  graphql_deployment_port: 3011
+  graphql_app_name: python_graphql_service_1
+  graphql_deployment_port: 3111
   graphql_host: 0.0.0.0
